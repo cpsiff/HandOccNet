@@ -193,14 +193,14 @@ if __name__ == "__main__":
     with open(save_path, "w") as f:
         json.dump(data_to_save, f)
 
-    # # bbox for input hand image
-    # bbox_vis = np.array(bbox, int)
-    # bbox_vis[2:] += bbox_vis[:2]
-    # cvimg = cv2.rectangle(original_img.copy(),
-    #                     bbox_vis[:2], bbox_vis[2:], (255, 0, 0), 3)
-    # cv2.imwrite(f'{osp.basename(img_path)[:-4]}_hand_bbox.png', cvimg[:, :, ::-1])
-    # ## input hand image
-    # cv2.imwrite(f'{osp.basename(img_path)[:-4]}_hand_image.png', img[:, :, ::-1])
+    # bbox for input hand image
+    bbox_vis = np.array(bbox, int)
+    bbox_vis[2:] += bbox_vis[:2]
+    cvimg = cv2.rectangle(original_img.copy(),
+                        bbox_vis[:2], bbox_vis[2:], (255, 0, 0), 3)
+    cv2.imwrite(osp.join(save_dir, 'hand_bbox.png'), cvimg[:, :, ::-1])
+    ## input hand image
+    cv2.imwrite(osp.join(save_dir, 'hand_image.png'), img[:, :, ::-1])
 
     # save mesh (obj)
     save_path = osp.join(save_dir, "3dmesh.obj")
