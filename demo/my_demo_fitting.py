@@ -97,7 +97,6 @@ if __name__ == "__main__":
     # hard coding
     save_dir = "../output/my_demo_fitting"
     init_depth = args.depth
-    bbox = [300, 330, 90, 50]  # [340.8, 232.0, 20.7, 20.7] # xmin, ymin, width, height
 
     # model snapshot load
     model_path = "./snapshot_demo.pth.tar"
@@ -115,6 +114,8 @@ if __name__ == "__main__":
     original_img = np.asanyarray(color_frame.get_data())
     original_img[:, :, [0, 2]] = original_img[:, :, [2, 0]]  # convert BGR to RGB
     original_img_height, original_img_width = original_img.shape[:2]
+
+    bbox = cv2.selectROI("Draw a bounding box around the hand", original_img, fromCenter=False)
 
     # prepare bbox
     bbox = process_bbox(bbox, original_img_width, original_img_height)
