@@ -53,12 +53,15 @@ model.eval()
 
 # prepare input image
 transform = transforms.ToTensor()
-img_path = 'input.png'
+img_path = 'myinput_2.png'
 original_img = load_img(img_path)
 original_img_height, original_img_width = original_img.shape[:2]
 
 # prepare bbox
-bbox = [340.8, 232.0, 20.7, 20.7] # xmin, ymin, width, height 
+# for myinput_1.png
+# bbox = [700.0, 340.0, 300.0, 350.0] # xmin, ymin, width, height 
+# for myinput_2.png
+bbox = [650.0, 400.0, 290.0, 290.0] # xmin, ymin, width, height
 
 bbox = process_bbox(bbox, original_img_width, original_img_height)
 img, img2bb_trans, bb2img_trans = generate_patch_image(original_img, bbox, 1.0, 0.0, False, cfg.input_img_shape) 
